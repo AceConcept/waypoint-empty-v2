@@ -14,7 +14,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "stepscreen": "github:AceConcept/polar-sys#main",
-    "waypoint-sidebar": "git+https://github.com/AceConcept/waypoint-sidebar.git#main",
+    "waypoint-sidebar": "file:./vendor/waypoint-sidebar",
     "zustand": "^5.0.12"
   },
   "devDependencies": {

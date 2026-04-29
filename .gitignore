@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+vendor/waypoint-sidebar/node_modules
 dist
 dist-ssr
 *.local
