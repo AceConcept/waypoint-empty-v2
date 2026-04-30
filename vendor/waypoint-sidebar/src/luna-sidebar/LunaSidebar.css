@@ -5,7 +5,6 @@
   .UxzaHe / .Q1PD1g.
 */
 :root {
-  font-family: "Figtree", sans-serif;
   font-size: 100%;
   color-scheme: light;
   --global-color-1: #f9fd5e;
@@ -64,6 +63,11 @@
 }
 
 /* Full-page shell (gutters, artboard, footer, dock) lives in app `lunaChrome.css`. */
+
+/* Sidebar copy uses Figtree; keep off :root so polar-sys artboard can use Inter. */
+.sidebar-shell.UxzaHe.luna-sidebar-dock {
+  font-family: "Figtree", sans-serif;
+}
 
 /* .UxzaHe — dark shell; drawer column may layer bg-image (see LunaSidebar.jsx) */
 .sidebar-shell.UxzaHe {

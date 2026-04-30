@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { polarFlowIdFromHash, useFlowStore } from '../store/flowStore'
 import 'stepscreen/src/styles.css'
 
 const ARTBOARD_WIDTH = 2560
@@ -50,6 +51,7 @@ export default function WaypointStepsScreen({ polarHash }: WaypointStepsScreenPr
     const ro = new ResizeObserver(scheduleScale)
     ro.observe(host)
     window.addEventListener('resize', scheduleScale)
+    window.addEventListener('hashchange', scheduleScale)
 
     const frame = host.querySelector<HTMLElement>('#scale-frame')
     const board = host.querySelector<HTMLElement>('#artboard')
@@ -65,7 +67,16 @@ export default function WaypointStepsScreen({ polarHash }: WaypointStepsScreenPr
       ro.disconnect()
       mo?.disconnect()
       window.removeEventListener('resize', scheduleScale)
+      window.removeEventListener('hashchange', scheduleScale)
     }
+  }, [])
+
+  useEffect(() => {
+    const onHashChange = () => {
+      useFlowStore.getState().goToStepById(polarFlowIdFromHash(window.location.hash))
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
   return (

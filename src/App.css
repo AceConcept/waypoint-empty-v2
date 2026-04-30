@@ -231,6 +231,35 @@
   color: #ffffff;
 }
 
+/*
+  Polar-sys: incident + monitor rely on `--font` in many selectors; redefine it here so Inter
+  wins regardless of stylesheet order (same subtree as anomaly).
+*/
+.luna-chrome .luna-stage .viewport {
+  --font: Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'IBM Plex Mono', 'Cousine', monospace;
+}
+
+/* Polar-sys (stepscreen): explicit stack + inherits so inputs/buttons match */
+.luna-chrome .luna-stage .viewport,
+.luna-chrome .luna-stage .artboard,
+.luna-chrome .luna-stage .artboard .app {
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.luna-chrome .luna-stage .monitor-page,
+.luna-chrome .luna-stage .incident-page {
+  font-family: var(--font);
+}
+
+.luna-chrome .luna-stage .viewport button,
+.luna-chrome .luna-stage .artboard button,
+.luna-chrome .luna-stage .artboard input,
+.luna-chrome .luna-stage .artboard select,
+.luna-chrome .luna-stage .artboard textarea {
+  font-family: inherit;
+}
+
 /* Luna sidebar: package uses all-caps for step list + Start; use normal casing */
 .luna-chrome .preview-card__step-label {
   text-transform: none;
