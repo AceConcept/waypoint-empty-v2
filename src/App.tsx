@@ -19,6 +19,7 @@ function App() {
 
   return (
     <LunaChrome
+      footerBackgroundUrl="/news_bg.jpg"
       sidebar={({ expanded, onExpandedChange }) => (
         <LunaSidebar
           items={FLOW_SIDEBAR_ITEMS}
