@@ -1,30 +1,31 @@
 import { create } from 'zustand'
 import { STEP_DESCRIPTIONS, STEP_TITLES } from '../stepDescriptions'
 
-/** Polar-sys hash routes — one sidebar step per page. */
-export type FlowStepId = 'anomaly' | 'monitor' | 'incident'
+/** Generic numbered step ids (1–4). */
+export type FlowStepId = '1' | '2' | '3' | '4'
 
-/** Map polar-sys `#/…` segments to sidebar / store ids (handles in-app navigations between views). */
+export const FLOW_STEP_IDS = ['1', '2', '3', '4'] as const satisfies readonly FlowStepId[]
+
+/** Map `#/2` … `#/4` hash segments to step ids; empty hash → step 1. */
 export function polarFlowIdFromHash(hash: string): FlowStepId {
-  const m = String(hash || '').match(/#\/([\w-]+)/)
+  const m = String(hash || '').match(/#\/(\d+)/)
   const segment = m ? m[1] : ''
-  if (segment === 'monitor' || segment === 'incident') return segment
-  return 'anomaly'
+  if (segment === '2' || segment === '3' || segment === '4') return segment
+  return '1'
 }
 
 export const POLAR_SYS_HASH: Record<FlowStepId, string> = {
-  anomaly: '',
-  monitor: '#/monitor',
-  incident: '#/incident',
+  '1': '',
+  '2': '#/2',
+  '3': '#/3',
+  '4': '#/4',
 }
-
-const IDS = ['anomaly', 'incident', 'monitor'] as const satisfies readonly FlowStepId[]
 
 export const FLOW_STEPS: {
   id: FlowStepId
   title: string
   body: string
-}[] = IDS.map((id, i) => ({
+}[] = FLOW_STEP_IDS.map((id, i) => ({
   id,
   title: STEP_TITLES[i] ?? STEP_TITLES[0],
   body: STEP_DESCRIPTIONS[i] ?? '',

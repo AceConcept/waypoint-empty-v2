@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { polarFlowIdFromHash, useFlowStore } from '../store/flowStore'
-
-/** Stage iframe image — put file in `public/` and set path here (e.g. `/motorcycle.png`). */
-const STAGE_EMBED_URL = '/motorcycle.png'
+import stageImage from '../../注意/cleric.jpg'
 
 type WaypointStepsScreenProps = {
   polarHash: string
@@ -29,10 +27,11 @@ export default function WaypointStepsScreen({ polarHash }: WaypointStepsScreenPr
   return (
     <div ref={hostRef} className="viewport">
       <div id="artboard" className="artboard">
-        <iframe
+        <img
           className="stepscreen-embed"
-          title="Motorcycle"
-          src={STAGE_EMBED_URL}
+          src={stageImage}
+          alt="Cleric"
+          draggable={false}
         />
       </div>
     </div>

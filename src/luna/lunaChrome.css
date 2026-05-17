@@ -30,6 +30,176 @@
   overflow: hidden;
 }
 
+/*
+  .luna-absolute-pad — top white bar + drop shadow
+  DOM:  #root > .luna-root > .luna-canvas-row > .luna-absolute-pad > .waypoint-navbar
+  Markup: src/luna/LunaChrome.tsx (first child of .luna-canvas-row, before .waypoint-horizontal)
+  Styles: src/luna/lunaChrome.css — rules below
+*/
+.luna-canvas-row > .luna-absolute-pad {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--luna-horizontal-pad-top); /* 8.1875rem = 131px */
+  background: #fff;
+  box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.luna-canvas-row > .luna-absolute-pad > .waypoint-navbar {
+  pointer-events: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-left,
+.luna-canvas-row > .luna-absolute-pad .navbar-steps,
+.luna-canvas-row > .luna-absolute-pad .navbar-right {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-left {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 10 10 33.875rem; /* 542px @ 16px/rem */
+  width: 33.875rem;
+  min-width: 0;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-left-brand {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 26.6875rem; /* 427px @ 16px/rem */
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-left-label {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 1.625rem; /* 26px @ 16px/rem */
+  letter-spacing: -0.02em; /* -2% */
+  line-height: 1;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps {
+  display: flex;
+  flex: 0 0 120rem;
+  width: 120rem;
+  min-width: 0;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab {
+  flex: 0 0 30rem; /* 120rem ÷ 4 */
+  width: 30rem;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 0.0625rem solid rgba(228, 228, 228, 0.8); /* #e4e4e4 @ 80% */
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab.step-4 {
+  border-right: 0.0625rem solid rgba(228, 228, 228, 0.8); /* #e4e4e4 @ 80% */
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab[aria-current='step'] {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab:focus-visible {
+  outline: 0.125rem solid rgba(0, 0, 0, 0.35);
+  outline-offset: -0.125rem;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps .step-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps .step-label-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: rgba(0, 0, 0, 0.5); /* #000 @ 50% */
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 1.5rem; /* 24px @ 16px/rem */
+  font-weight: 600;
+  text-transform: uppercase;
+  transition:
+    gap 0.25s ease,
+    color 0.15s ease;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps .step-label-text {
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps .step-diamond {
+  flex: 0 0 auto;
+  width: 0;
+  min-width: 0;
+  height: 1rem; /* 16px @ 16px/rem */
+  overflow: hidden;
+  background: url('/Icons/sidebar/diamond.svg') center / contain no-repeat;
+  opacity: 0;
+  transition:
+    width 0.25s ease,
+    min-width 0.25s ease,
+    opacity 0.2s ease,
+    filter 0.15s ease;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab:hover .step-label-inner,
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab:focus-visible .step-label-inner,
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab[aria-current='step'] .step-label-inner {
+  gap: 1.5rem; /* 24px — title shifts as diamond enters */
+  color: #000;
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab:hover .step-diamond,
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab:focus-visible .step-diamond,
+.luna-canvas-row > .luna-absolute-pad .navbar-steps > .step-tab[aria-current='step'] .step-diamond {
+  width: 1rem;
+  min-width: 1rem;
+  opacity: 1;
+  filter: brightness(0);
+}
+
+.luna-canvas-row > .luna-absolute-pad .navbar-right {
+  flex: 10 10 var(--sidebar-collapsed); /* 6.125rem = 98px @ 16px/rem */
+  width: var(--sidebar-collapsed);
+  min-width: 0;
+}
+
 /* Main band fills the 90rem row; padding inside the design box. */
 .luna-canvas-row > .waypoint-horizontal {
   position: relative;
@@ -66,12 +236,23 @@
 
 .luna-space-left,
 .luna-space-right {
-  flex: 1 1 0;
   min-width: 0;
   height: 100%;
   align-self: stretch;
   background: url('/bg-img/bg-img3.jpg') repeat 0 0;
   background-color: transparent;
+}
+
+.luna-space-left {
+  flex: 10 10 33.875rem; /* 542px @ 16px/rem */
+  width: 33.875rem;
+  min-width: 0;
+}
+
+.luna-space-right {
+  flex: 10 10 var(--sidebar-collapsed); /* 6.125rem = 98px @ 16px/rem */
+  width: var(--sidebar-collapsed);
+  min-width: 0;
 }
 
 /* Center column: 75% of canvas in rem (scales with root font-size). */

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+﻿import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { LunaCanvasScaleContext } from 'waypoint-sidebar/src/luna-sidebar/index.js'
 import {
   getCanvasContainScale,
@@ -7,6 +7,7 @@ import {
   SIDEBAR_EXPANDED_REM,
 } from 'waypoint-sidebar/src/luna-sidebar/canvasScale.js'
 import { applyLunaDocumentScale, resetLunaDocumentScale } from './applyLunaDocumentScale'
+import { WaypointNavbar } from './WaypointNavbar'
 import './lunaChrome.css'
 
 export type LunaChromeSidebarControls = {
@@ -90,6 +91,7 @@ export function LunaChrome({
       <div
         className={`luna-canvas-row${expanded ? ' luna-canvas-row--drawer-open' : ''}`}
       >
+        <WaypointNavbar />
         <div className="waypoint-horizontal">
           <div className="luna-space-left" aria-hidden="true" />
           <div className="luna-center-column">
