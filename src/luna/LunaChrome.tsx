@@ -188,6 +188,12 @@ export function LunaChrome({
                 <div className="content-buttons">
                   <button
                     type="button"
+                    className="content-button content-button--case-study"
+                  >
+                    Case study
+                  </button>
+                  <button
+                    type="button"
                     className="content-button content-button--fullscreen"
                     onClick={openFullscreen}
                   >

@@ -98,10 +98,6 @@ export function WaypointSidebar({
     [onActiveItemChange],
   )
 
-  const handleStart = useCallback(() => {
-    selectItem(activeId)
-  }, [activeId, selectItem])
-
   if (!items.length) {
     return null
   }
@@ -157,44 +153,41 @@ export function WaypointSidebar({
                       <p className="wp-sidebar__description">
                         {activeItem.description}
                       </p>
-                      <div className="wp-sidebar__actions">
-                        <button
-                          type="button"
-                          className="wp-sidebar__start"
-                          onClick={handleStart}
-                        >
-                          Start
-                        </button>
-                        {isInfoLink ? (
-                          <a
-                            className="wp-sidebar__info"
-                            href={trimmedInfoHref}
-                            target={infoOpenInNewTab ? '_blank' : undefined}
-                            rel={
-                              infoOpenInNewTab ? 'noopener noreferrer' : undefined
-                            }
-                            title={infoTooltip}
-                            aria-label={
-                              infoOpenInNewTab
-                                ? `${infoTooltip} (opens in new tab)`
-                                : infoTooltip
-                            }
-                            onClick={() => onInfo?.()}
-                          >
-                            <InfoIcon />
-                          </a>
-                        ) : onInfo ? (
-                          <button
-                            type="button"
-                            className="wp-sidebar__info"
-                            title={infoTooltip}
-                            aria-label={infoTooltip}
-                            onClick={() => onInfo()}
-                          >
-                            <InfoIcon />
-                          </button>
-                        ) : null}
-                      </div>
+                      {isInfoLink || onInfo ? (
+                        <div className="wp-sidebar__actions">
+                          {isInfoLink ? (
+                            <a
+                              className="wp-sidebar__info"
+                              href={trimmedInfoHref}
+                              target={infoOpenInNewTab ? '_blank' : undefined}
+                              rel={
+                                infoOpenInNewTab
+                                  ? 'noopener noreferrer'
+                                  : undefined
+                              }
+                              title={infoTooltip}
+                              aria-label={
+                                infoOpenInNewTab
+                                  ? `${infoTooltip} (opens in new tab)`
+                                  : infoTooltip
+                              }
+                              onClick={() => onInfo?.()}
+                            >
+                              <InfoIcon />
+                            </a>
+                          ) : onInfo ? (
+                            <button
+                              type="button"
+                              className="wp-sidebar__info"
+                              title={infoTooltip}
+                              aria-label={infoTooltip}
+                              onClick={() => onInfo()}
+                            >
+                              <InfoIcon />
+                            </button>
+                          ) : null}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
 

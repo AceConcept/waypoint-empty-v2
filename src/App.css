@@ -367,11 +367,6 @@
   text-transform: none;
 }
 
-.luna-canvas-row .wp-sidebar__start {
-  text-transform: none;
-  letter-spacing: 0.1em;
-}
-
 .luna-canvas-row .wp-sidebar__title {
   font-size: 1.875rem; /* 30px @ 16px/rem */
   font-weight: 500;
